@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 import { SideBar } from "./components/SideBar";
 import { Content } from "./components/Content";
+import { MovieInfo } from "./components/MovieInfo";
 
 import { api } from "./services/api";
 
@@ -81,7 +82,7 @@ export function App() {
       />
       <div className="container">
         {selectedMovie ? (
-          <div>ok</div>
+          <MovieInfo />
         ) : (
           <Content
             selectedGenre={selectedGenre}
