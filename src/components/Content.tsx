@@ -20,11 +20,16 @@ interface MovieProps {
 type ContentProps = {
   selectedGenre: GenreResponseProps;
   movies: MovieProps[];
+  handleSelectMovie(imdbId: string): void;
 };
 
-export const Content = ({ selectedGenre, movies }: ContentProps) => {
+export const Content = ({
+  selectedGenre,
+  movies,
+  handleSelectMovie,
+}: ContentProps) => {
   return (
-    <div className="container">
+    <>
       <header>
         <span className="category">
           Categoria:<span> {selectedGenre.title}</span>
@@ -34,16 +39,18 @@ export const Content = ({ selectedGenre, movies }: ContentProps) => {
       <main>
         <div className="movies-list">
           {movies.map((movie) => (
-            <MovieCard
-              key={movie.imdbID}
-              title={movie.Title}
-              poster={movie.Poster}
-              runtime={movie.Runtime}
-              rating={movie.Ratings[0].Value}
-            />
+            <a onClick={() => handleSelectMovie(movie.imdbID)}>
+              <MovieCard
+                key={movie.imdbID}
+                title={movie.Title}
+                poster={movie.Poster}
+                runtime={movie.Runtime}
+                rating={movie.Ratings[0].Value}
+              />
+            </a>
           ))}
         </div>
       </main>
-    </div>
+    </>
   );
 };
