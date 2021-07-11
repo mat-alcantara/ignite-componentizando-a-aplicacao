@@ -24,7 +24,7 @@ type MovieInfoProps = {
 
 export const MovieInfo = ({ movie, handleRemoveMovie }: MovieInfoProps) => {
   return (
-    <div>
+    <div style={{ minHeight: "100vh" }}>
       <button className="x-button" onClick={() => handleRemoveMovie()}>
         <FiX />
       </button>
