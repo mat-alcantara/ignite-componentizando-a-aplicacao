@@ -1,4 +1,4 @@
-import { FiCalendar, FiClock, FiStar } from "react-icons/fi";
+import { FiCalendar, FiClock, FiStar, FiX } from "react-icons/fi";
 
 interface MovieProps {
   imdbID: string;
@@ -18,11 +18,25 @@ interface MovieProps {
 
 type MovieInfoProps = {
   movie: MovieProps;
+  handleRemoveMovie(): void;
 };
 
-export const MovieInfo = ({ movie }: MovieInfoProps) => {
+export const MovieInfo = ({ movie, handleRemoveMovie }: MovieInfoProps) => {
   return (
     <div>
+      <button
+        style={{
+          display: "block",
+          float: "right",
+          background: "transparent",
+          width: "10px",
+          height: "10px",
+          padding: "0px",
+        }}
+        onClick={() => handleRemoveMovie()}
+      >
+        <FiX />
+      </button>
       <div
         style={{
           marginTop: "32px",
@@ -35,7 +49,7 @@ export const MovieInfo = ({ movie }: MovieInfoProps) => {
           style={{ height: "250px", width: "auto" }}
         />
         <div style={{ marginLeft: "32px" }}>
-          <h1>Underdog</h1>
+          <h1>{movie.Title}</h1>
           <div style={{ display: "flex", flexDirection: "row", gap: "32px" }}>
             <p style={{ display: "flex", alignItems: "center", gap: "4px" }}>
               <FiCalendar />

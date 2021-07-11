@@ -78,6 +78,10 @@ export function App() {
     }
   }
 
+  function handleRemoveMovie() {
+    setSelectedMovie(null);
+  }
+
   return (
     <div style={{ display: "flex", flexDirection: "row" }}>
       <SideBar
@@ -87,7 +91,10 @@ export function App() {
       />
       <div className="container">
         {selectedMovie ? (
-          <MovieInfo movie={selectedMovie} />
+          <MovieInfo
+            movie={selectedMovie}
+            handleRemoveMovie={handleRemoveMovie}
+          />
         ) : (
           <Content
             selectedGenre={selectedGenre}
