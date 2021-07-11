@@ -1,4 +1,5 @@
 import { FiCalendar, FiClock, FiStar, FiX } from "react-icons/fi";
+import "../styles/movie-info.scss";
 
 interface MovieProps {
   imdbID: string;
@@ -24,38 +25,19 @@ type MovieInfoProps = {
 export const MovieInfo = ({ movie, handleRemoveMovie }: MovieInfoProps) => {
   return (
     <div>
-      <button
-        style={{
-          display: "block",
-          float: "right",
-          background: "transparent",
-          width: "10px",
-          height: "10px",
-          padding: "0px",
-        }}
-        onClick={() => handleRemoveMovie()}
-      >
+      <button className="x-button" onClick={() => handleRemoveMovie()}>
         <FiX />
       </button>
-      <div
-        style={{
-          marginTop: "32px",
-          display: "flex",
-        }}
-      >
-        <img
-          src={movie.Poster}
-          alt="Movie poster"
-          style={{ height: "250px", width: "auto" }}
-        />
-        <div style={{ marginLeft: "32px" }}>
+      <div className="info-container">
+        <img src={movie.Poster} alt="Movie poster" />
+        <div>
           <h1>{movie.Title}</h1>
-          <div style={{ display: "flex", flexDirection: "row", gap: "32px" }}>
-            <p style={{ display: "flex", alignItems: "center", gap: "4px" }}>
+          <div>
+            <p>
               <FiCalendar />
               {movie.Released}
             </p>
-            <p style={{ display: "flex", alignItems: "center", gap: "4px" }}>
+            <p>
               <FiClock />
               {movie.Runtime}
             </p>
@@ -71,8 +53,8 @@ export const MovieInfo = ({ movie, handleRemoveMovie }: MovieInfoProps) => {
           </p>
         </div>
       </div>
-      <div style={{ marginTop: "32px" }}>
-        <h1 style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+      <div className="rating-container">
+        <h1>
           <FiStar style={{ color: "yellow" }} />
           Ratings
         </h1>

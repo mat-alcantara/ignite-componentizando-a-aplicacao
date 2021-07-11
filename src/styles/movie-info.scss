@@ -1,0 +1,44 @@
+.x-button {
+  display: block;
+  float: right;
+  background: transparent;
+  width: 10px;
+  height: 10px;
+  padding: 0px;
+}
+
+.info-container {
+  margin-top: 32px;
+  display: flex;
+
+  img {
+    height: 250px;
+    width: auto;
+  }
+
+  > div {
+    margin-left: 32px;
+
+    div {
+      display: flex;
+      flex-direction: row;
+      gap: 32px;
+
+      p {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+    }
+  }
+}
+
+.rating-container {
+  margin-top: 32px;
+
+  h1 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+}
