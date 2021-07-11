@@ -19,6 +19,11 @@ interface GenreResponseProps {
 
 interface MovieProps {
   imdbID: string;
+  Released: string;
+  Genre: string;
+  Director: string;
+  Plot: string;
+  imdbRating: string;
   Title: string;
   Poster: string;
   Ratings: Array<{
@@ -82,7 +87,7 @@ export function App() {
       />
       <div className="container">
         {selectedMovie ? (
-          <MovieInfo />
+          <MovieInfo movie={selectedMovie} />
         ) : (
           <Content
             selectedGenre={selectedGenre}

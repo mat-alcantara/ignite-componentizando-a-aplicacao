@@ -1,6 +1,26 @@
-import { FiCalendar, FiClock, FiStar, FiDollarSign } from "react-icons/fi";
+import { FiCalendar, FiClock, FiStar } from "react-icons/fi";
 
-export const MovieInfo = () => {
+interface MovieProps {
+  imdbID: string;
+  Released: string;
+  Genre: string;
+  Director: string;
+  Plot: string;
+  imdbRating: string;
+  Title: string;
+  Poster: string;
+  Ratings: Array<{
+    Source: string;
+    Value: string;
+  }>;
+  Runtime: string;
+}
+
+type MovieInfoProps = {
+  movie: MovieProps;
+};
+
+export const MovieInfo = ({ movie }: MovieInfoProps) => {
   return (
     <div>
       <div
@@ -10,7 +30,7 @@ export const MovieInfo = () => {
         }}
       >
         <img
-          src="https://m.media-amazon.com/images/M/MV5BMTk5NjkyNzEwOV5BMl5BanBnXkFtZTcwODc5NDI1MQ@@._V1_SX300.jpg"
+          src={movie.Poster}
           alt="Movie poster"
           style={{ height: "250px", width: "auto" }}
         />
@@ -19,24 +39,21 @@ export const MovieInfo = () => {
           <div style={{ display: "flex", flexDirection: "row", gap: "32px" }}>
             <p style={{ display: "flex", alignItems: "center", gap: "4px" }}>
               <FiCalendar />
-              03 Aug 2007
+              {movie.Released}
             </p>
             <p style={{ display: "flex", alignItems: "center", gap: "4px" }}>
               <FiClock />
-              84 min
+              {movie.Runtime}
             </p>
           </div>
           <p style={{ marginTop: "16px" }}>
-            <strong>Director:</strong> Frederik Du Chau
+            <strong>Director:</strong> {movie.Director}
           </p>
           <p>
-            <strong>Sinopsis:</strong> A Beagle must use his newly-bestowed
-            superpowers to defend Capitol City from mad scientist Simon
-            Barsinister.
+            <strong>Sinopsis:</strong> {movie.Plot}
           </p>
           <p>
-            <strong>Genre:</strong> Action, Adventure, Comedy, Family, Fantasy,
-            Sci-Fi
+            <strong>Genre:</strong> {movie.Genre}
           </p>
         </div>
       </div>
@@ -45,11 +62,10 @@ export const MovieInfo = () => {
           <FiStar style={{ color: "yellow" }} />
           Ratings
         </h1>
-        <p>Imdb: 4.7</p>
-        <p>Internet Movie Database: 10/10</p>
-        <p>Rotten Tomatoes: 16%</p>
-        <p>Metacritic: 37/100</p>
-        <p>Metascore: 37</p>
+        <p>Imdb: {movie.imdbRating}</p>
+        {movie.Ratings.map((item) => (
+          <p>{`${item.Source}: ${item.Value}`}</p>
+        ))}
       </div>
     </div>
   );
