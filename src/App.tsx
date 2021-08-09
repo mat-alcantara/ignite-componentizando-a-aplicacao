@@ -1,20 +1,8 @@
 import { useCallback, useEffect, useState, lazy } from "react";
 
 import { SideBar } from "./components/SideBar";
-
-// Lazy import of MovieInfo because MovieInfo only renders if a movie is selected
-const MovieInfo = lazy(() =>
-  import("./components/MovieInfo").then((module) => ({
-    default: module.MovieInfo,
-  }))
-);
-
-// Lazy import of Content because Content only renders if a movie is not selected
-const Content = lazy(() =>
-  import("./components/Content").then((module) => ({
-    default: module.Content,
-  }))
-);
+import { Content } from "./components/Content";
+import { MovieInfo } from "./components/MovieInfo";
 
 import { api } from "./services/api";
 
