@@ -37,7 +37,10 @@ export const Content = memo(
         <main>
           <div className="movies-list">
             {movies.map((movie) => (
-              <a onClick={() => handleSelectMovie(movie.imdbID)}>
+              <a
+                key={movie.Title}
+                onClick={() => handleSelectMovie(movie.imdbID)}
+              >
                 <MovieCard
                   key={movie.imdbID}
                   title={movie.Title}

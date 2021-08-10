@@ -72,7 +72,7 @@ export function App() {
     (imdbId: string) => {
       const movieSelected = movies.find((movie) => movie.imdbID === imdbId);
 
-      if (movieSelected) {
+      if (movieSelected && movieSelected !== selectedMovie) {
         setSelectedMovie(movieSelected);
       }
     },
