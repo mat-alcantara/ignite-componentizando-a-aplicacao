@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { MovieCard } from "./MovieCard";
 
 interface GenreResponseProps {
@@ -23,34 +24,38 @@ type ContentProps = {
   handleSelectMovie(imdbId: string): void;
 };
 
-export const Content = ({
-  selectedGenre,
-  movies,
-  handleSelectMovie,
-}: ContentProps) => {
-  return (
-    <>
-      <header>
-        <span className="category">
-          Categoria:<span> {selectedGenre.title}</span>
-        </span>
-      </header>
+export const Content = memo(
+  ({ selectedGenre, movies, handleSelectMovie }: ContentProps) => {
+    return (
+      <>
+        <header>
+          <span className="category">
+            Categoria:<span> {selectedGenre.title}</span>
+          </span>
+        </header>
 
-      <main>
-        <div className="movies-list">
-          {movies.map((movie) => (
-            <a onClick={() => handleSelectMovie(movie.imdbID)}>
-              <MovieCard
-                key={movie.imdbID}
-                title={movie.Title}
-                poster={movie.Poster}
-                runtime={movie.Runtime}
-                rating={movie.Ratings[0].Value}
-              />
-            </a>
-          ))}
-        </div>
-      </main>
-    </>
-  );
-};
+        <main>
+          <div className="movies-list">
+            {movies.map((movie) => (
+              <a onClick={() => handleSelectMovie(movie.imdbID)}>
+                <MovieCard
+                  key={movie.imdbID}
+                  title={movie.Title}
+                  poster={movie.Poster}
+                  runtime={movie.Runtime}
+                  rating={movie.Ratings[0].Value}
+                />
+              </a>
+            ))}
+          </div>
+        </main>
+      </>
+    );
+  },
+  (prevProps, nextProps) => {
+    return (
+      Object.is(prevProps.selectedGenre, nextProps.selectedGenre) ||
+      Object.is(prevProps.movies, nextProps.movies)
+    );
+  }
+);
